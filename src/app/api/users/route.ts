@@ -18,13 +18,13 @@ export async function GET(request: Request) {
 }
 export async function POST(request: Request) {
   try {
-    const { firstName, lastName } = await request.json();
-    const newUser = { firstName, lastName };
+    const { firstName, lastName, userId } = await request.json();
+    const newUser = { firstName, lastName, userId };
     usersDb.push(newUser);
     return NextResponse.json({
       ok: true,
       status: 201,
-      data: { firstName, lastName },
+      data: { firstName, lastName, userId },
     });
   } catch (error) {
     console.error('There was an internal server error adding a user', error);

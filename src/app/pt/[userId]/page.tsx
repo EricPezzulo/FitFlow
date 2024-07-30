@@ -1,4 +1,4 @@
-import UserPageComponent from '@/components/UserPageComponent';
+import UserPageComponent from '@/components/SSR-Page-Children/UserPageComponent';
 import { fetchUser } from '@/hooks/useFetchUsers';
 import {
   dehydrate,
@@ -11,10 +11,7 @@ export default async function UserPage({
 }: {
   params: { userId: string | number };
 }) {
-  //   console.log(params.userId);
-  //   const { userId } = params;\
   const { userId } = params;
-  console.log(userId);
 
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({

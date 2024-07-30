@@ -1,13 +1,12 @@
 'use client';
-import { UserType } from '@/types/types';
 import { useFetchUsers } from '@/hooks/useFetchUsers';
 import Dialog from '@/components/ui/Dialog';
 import { useRef, useState } from 'react';
 import { useAddUser } from '@/hooks/useAddUser';
-
 import { CirclePlus } from 'lucide-react';
-import UserTableElement from '@/components/custom-ui/UserTableElement';
 import BreadCrumbs from '@/components/ui/BreadCrumbs';
+import UserTable from '@/components/custom-ui/UserTable';
+import { v4 as uuidv4 } from 'uuid';
 
 interface UserInfoType {
   firstName: HTMLInputElement | null;
@@ -34,6 +33,7 @@ const UsersList = () => {
     addUser({
       firstName: userInfo.current.firstName?.value,
       lastName: userInfo.current.lastName?.value,
+      userId: uuidv4(),
     });
   };
 
@@ -54,28 +54,7 @@ const UsersList = () => {
         </div>
       </div>
 
-      <table className="flex flex-col border border-slate-300 rounded-lg">
-        <thead className="h-10 flex items-center border-b border-slate-200">
-          <tr className="grid grid-cols-5 place-items-start px-3 w-full">
-            <th></th>
-            <th>Name</th>
-            <th>Weight</th>
-            <th>PT Package</th>
-            <th>Sessions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.data.map((user: UserType, index: number) => (
-            <UserTableElement key={index} user={user} />
-          ))}
-        </tbody>
-        <tfoot className="flex items-center h-10 px-5 border-t border-slate-200">
-          <tr>
-            <td className="text-sm">Showing 1-10 on page 1</td>
-          </tr>
-        </tfoot>
-      </table>
-
+      <UserTable user={data.data} />
       <Dialog
         onSubmit={handleAddUser}
         onClose={() => setIsModalOpen(false)}

@@ -13,9 +13,11 @@ export function useAddUser() {
 export const addUser = async ({
   firstName,
   lastName,
+  userId,
 }: {
   firstName: string | undefined;
   lastName: string | undefined;
+  userId: string | number;
 }) => {
   try {
     const res = await fetch(`http://localhost:3000/api/users`, {
@@ -23,7 +25,7 @@ export const addUser = async ({
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ firstName, lastName }),
+      body: JSON.stringify({ firstName, lastName, userId }),
     });
 
     if (!res.ok) {

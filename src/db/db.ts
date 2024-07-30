@@ -17,7 +17,7 @@ export const usersDb: UserType[] = [
     bodyFatPercent: 12.4,
     ptPackage: '12 PTM  3 Months 60 Mins',
     sessionsRemaining: 5,
-    userId: 1,
+    userId: 'c1270755-c9cd-45de-8355-0574ee9364ab',
   },
   {
     firstName: 'Bobby',
@@ -35,6 +35,6 @@ export const usersDb: UserType[] = [
     bodyFatPercent: 15.4,
     ptPackage: '8 PTM 3 Months 30 Mins',
     sessionsRemaining: 8,
-    userId: 2,
+    userId: '7f749c06-0758-49d1-b5a2-21c77169b5a3',
   },
 ];
