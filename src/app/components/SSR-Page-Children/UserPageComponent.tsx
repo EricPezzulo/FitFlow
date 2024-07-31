@@ -1,5 +1,6 @@
 'use client';
 import { useFetchUser } from '@/hooks/useFetchUsers';
+import BreadCrumbs from '../ui/BreadCrumbs';
 
 const UserPageComponent = ({ userId }: { userId: string | number }) => {
   const { data, isLoading, isError, error } = useFetchUser(userId);
@@ -9,6 +10,7 @@ const UserPageComponent = ({ userId }: { userId: string | number }) => {
 
   return (
     <div>
+      <BreadCrumbs />
       <div className="shadow w-96 h-96 rounded-lg m-5 border border-slate-200 p-5">
         <p className="text-lg">Name</p>
         <input
