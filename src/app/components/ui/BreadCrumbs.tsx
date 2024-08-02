@@ -11,27 +11,40 @@ const BreadCrumbs = () => {
   const pathname = usePathname();
   const pathnames = pathname.split('/').filter((x) => x);
 
-  const userBreadCumbName = usersDb.find((x) => x.userId === pathnames[1]);
+  const userId = pathnames[1];
+  const userBreadCumbName = usersDb.find((x) => x.userId === userId);
   console.log(pathnames);
 
   return (
-    <div className="flex flex-row items-center">
+    <div className="flex flex-row items-center p-2">
       <Link href="/">
-        <Home className="w-5 h-5" />
+        <Home className="w-6 h-6 text-slate-700 hover:text-slate-500 duration-75 ease-in" />
       </Link>
 
       {pathnames.map((value, index) => {
         const to = `/${pathnames.slice(0, index + 1).join('/')}`;
+        const isUserSegment = index === 1 && userBreadCumbName;
 
         return (
-          <li key={to} className="flex items-center">
-            <ChevronRight className="w-5 h-5" />
-            <Link href="/pt">Users</Link>
-            <ChevronRight className="w-5 h-5" />
-            <Link className="text-blue-600" href={to}>
-              {/* {value.charAt(0).toUpperCase() + value.slice(1)} */}
-              {userBreadCumbName?.firstName} {userBreadCumbName?.lastName}
-            </Link>
+          <li key={to} className="flex items-center ">
+            <ChevronRight className="w-6 h-6 text-slate-700" />
+            {index === 0 ? (
+              <Link
+                href="/pt"
+                className="font-medium text-slate-700 hover:text-slate-500 duration-75 ease-in"
+              >
+                Users
+              </Link>
+            ) : (
+              <Link
+                className="text-slate-700 font-medium hover:text-slate-500 duration-75 ease-in"
+                href={to}
+              >
+                {isUserSegment
+                  ? `${userBreadCumbName?.firstName} ${userBreadCumbName?.lastName}`
+                  : value.charAt(0).toUpperCase() + value.slice(1)}
+              </Link>
+            )}
           </li>
         );
       })}
