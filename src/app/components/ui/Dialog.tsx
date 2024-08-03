@@ -31,23 +31,19 @@ const Dialog = ({
         </div>
 
         {children}
-        <button
-          className="mt-4 px-4 py-2 bg-slate-700 hover:bg-slate-800 duration-100 ease-in text-white rounded"
-          type="button"
-          onClick={onClose}
-        >
-          Close
-        </button>
-        <button
-          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
-          type="button"
-          onClick={() => {
-            onSubmit();
-            onClose();
-          }}
-        >
-          Submit
-        </button>
+
+        <div className="flex items-center w-full justify-center">
+          <button
+            className="mt-4 px-4 py-2 bg-slate-700 hover:bg-slate-800 duration-100 ease-in text-white rounded"
+            type="button"
+            onClick={() => {
+              onSubmit();
+              onClose();
+            }}
+          >
+            Submit
+          </button>
+        </div>
       </div>
     </div>
   );

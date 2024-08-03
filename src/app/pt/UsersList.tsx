@@ -30,11 +30,13 @@ const UsersList = () => {
   }
 
   const handleAddUser = (): void => {
-    addUser({
+    let user = {
       firstName: userInfo.current.firstName?.value,
       lastName: userInfo.current.lastName?.value,
       userId: uuidv4(),
-    });
+    };
+
+    addUser(user);
   };
 
   return (

@@ -1,31 +1,25 @@
-import { usersDb } from '@db/db';
+import { UserType } from '@/types/types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export function useAddUser() {
   const queryClient = useQueryClient();
   return useMutation({
+    mutationKey: ['add-user'],
     mutationFn: addUser,
     onSuccess: () => {
+      console.log('mutation successful');
       queryClient.invalidateQueries({ queryKey: ['users'] });
     },
   });
 }
-export const addUser = async ({
-  firstName,
-  lastName,
-  userId,
-}: {
-  firstName: string | undefined;
-  lastName: string | undefined;
-  userId: string | number;
-}) => {
+export const addUser = async (user: UserType) => {
   try {
     const res = await fetch(`http://localhost:3000/api/users`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ firstName, lastName, userId }),
+      body: JSON.stringify(user),
     });
 
     if (!res.ok) {

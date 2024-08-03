@@ -1,6 +1,6 @@
 export interface UserType {
-  firstName: string;
-  lastName: string;
+  firstName: string | undefined;
+  lastName: string | undefined;
   phoneNumber?: string;
   address?: string;
   age?: number;
@@ -13,5 +13,5 @@ export interface UserType {
   bodyFatPercent?: number;
   ptPackage?: string | null;
   sessionsRemaining?: number | null;
-  userId?: string | number;
+  userId: string | number;
 }

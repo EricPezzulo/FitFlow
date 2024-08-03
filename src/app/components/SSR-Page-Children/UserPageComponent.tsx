@@ -1,10 +1,11 @@
 'use client';
 import { useFetchUser } from '@/hooks/useFetchUsers';
 import BreadCrumbs from '../ui/BreadCrumbs';
+import { usersDb } from '@db/db';
 
 const UserPageComponent = ({ userId }: { userId: string | number }) => {
   const { data, isLoading, isError, error } = useFetchUser(userId);
-
+  console.log(usersDb);
   if (isLoading) return <div>Loading user</div>;
   if (isError || data.error) return <div>{data.error}</div>;
 
